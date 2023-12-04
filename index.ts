@@ -5,6 +5,7 @@ import { mkdirSync } from 'node:fs';
 const program = new Command();
 
 const getDay = async (day: number) => {
+  const today = new Date().getDate();
   if (isNaN(day) || !day) {
     throw Error('Error', { cause: isNaN(day) ? `${day} is not a number` : 'Argument missing' })
   }
@@ -15,16 +16,16 @@ const getDay = async (day: number) => {
         Cookie: `session=${process.env.COOKIE}`,
     }});
     const input = await res.text();
-    const dir = `./dir/day_${day}`;
-    mkdirSync(dir, { recursive: true });
-    const inputExists = await Bun.file(`${dir}/day${day}Input.txt`).exists()
+    const dayDir = `./day/day${day}`;
+    mkdirSync(dayDir, { recursive: true });
+    const inputExists = await Bun.file(`${dayDir}/day${day}Input.txt`).exists()
     if (inputExists) {
       throw new Error('This already exists!');
     }
-    fs.writeFileSync(`${dir}/day${day}Input.txt`, input);
-    fs.writeFileSync(`${dir}/example1.txt`, '');
-    fs.writeFileSync(`${dir}/example2.txt`, '');
-    fs.copyFileSync('./template.ts', `${dir}/day${day}Solution.ts`);
+    fs.writeFileSync(`${dayDir}/day${day}Input.txt`, input);
+    fs.writeFileSync(`${dayDir}/example1.txt`, '');
+    fs.writeFileSync(`${dayDir}/example2.txt`, '');
+    fs.copyFileSync('./template.ts', `${dayDir}/day${day}Solution.ts`);
   } catch (error) {
     return error;
   }

@@ -69,13 +69,12 @@ const puzzle2 = (input: string) => {
   const incrementCount = (idx: number, value: number) => {
     cards[idx] = (cards[idx] || 0) + value;
   };
-
   lines.forEach(({ winningNums, myNums }, idx) => {
     incrementCount(idx, 1);
     const wins = winningCardCount(winningNums, myNums);
     if (wins > 0) {
-      for (const j of range(wins)) {
-        incrementCount(idx + 1 + j, cards[idx]);
+      for (const win of range(wins)) {
+        incrementCount(idx + 1 + win, cards[idx]);
       }
     }
   })
