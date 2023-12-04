@@ -22,7 +22,9 @@ const getDay = async (day: number) => {
       throw new Error('This already exists!');
     }
     fs.writeFileSync(`${dir}/day${day}Input.txt`, input);
-    fs.writeFileSync(`${dir}/day${day}Solution.ts`, './template.ts');
+    fs.writeFileSync(`${dir}/example1.txt`, '');
+    fs.writeFileSync(`${dir}/example2.txt`, '');
+    fs.copyFileSync('./template.ts', `${dir}/day${day}Solution.ts`);
   } catch (error) {
     return error;
   }

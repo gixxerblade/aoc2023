@@ -4,7 +4,7 @@
   "type": "module",
   "license": "MIT",
   "scripts": {
-    "start": "bun run ./index.ts"
+    "aoc": "bun run ./index.ts"
   },
   "devDependencies": {
     "@types/commander": "^2.12.2",

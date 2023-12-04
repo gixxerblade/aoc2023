@@ -80,5 +80,5 @@ const puzzle2 = (input: string) => {
 
 }
 
-// console.log(puzzlel(input));
+console.log(puzzlel(input));
 console.log(puzzle2(input));
