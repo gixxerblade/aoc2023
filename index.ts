@@ -18,11 +18,11 @@ const getDay = async (day: number) => {
     const input = await res.text();
     const dayDir = `./day/day${day}`;
     mkdirSync(dayDir, { recursive: true });
-    const inputExists = await Bun.file(`${dayDir}/day${day}Input.txt`).exists()
+    const inputExists = await Bun.file(`${dayDir}/input.txt`).exists();
     if (inputExists) {
       throw new Error('This already exists!');
     }
-    fs.writeFileSync(`${dayDir}/day${day}Input.txt`, input);
+    fs.writeFileSync(`${dayDir}/input.txt`, input);
     fs.writeFileSync(`${dayDir}/example1.txt`, '');
     fs.writeFileSync(`${dayDir}/example2.txt`, '');
     fs.copyFileSync('./template.ts', `${dayDir}/day${day}Solution.ts`);

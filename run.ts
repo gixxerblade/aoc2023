@@ -10,7 +10,7 @@ program
 
 program.parse(process.argv);
 
-const options = program.opts(); 
+const options = program.opts();
 
 const dayNum = options.day;
 const directory = `./day/day${dayNum}`;
@@ -25,4 +25,7 @@ if (options.less) {
 }
 
 
-execSync(`cd ${directory} && bun run day${dayNum}Solution.ts ${options.less && '| less'}`, { stdio: "inherit" });
+execSync(
+  `cd ${directory} && bun run --watch day${dayNum}Solution.ts ${options.less && '| less'}`,
+  { stdio: "inherit" }
+);
